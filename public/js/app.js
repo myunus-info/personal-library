@@ -1,4 +1,4 @@
-// Antigravity Library Interactions
+//  Library Interactions
 
 document.addEventListener('DOMContentLoaded', () => {
     // Alert dismissal

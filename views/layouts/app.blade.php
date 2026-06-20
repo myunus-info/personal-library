@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Library Management') - Antigravity Library</title>
+    <title>@yield('title', 'Library Management') - Personal Library</title>
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="/css/app.css">
     <!-- Google Fonts -->
@@ -24,7 +24,7 @@
             <div>
                 <!-- Logo / Header -->
                 <div class="h-16 flex items-center px-6 border-b border-slate-800 gap-2">
-                    <span class="text-xl font-bold bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">Antigravity Lib</span>
+                    <span class="text-xl font-bold bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent"></span>
                     <span class="px-2 py-0.5 text-xs bg-indigo-500/10 text-indigo-400 rounded-full border border-indigo-500/20">Admin</span>
                 </div>
 
@@ -115,13 +115,13 @@
             const timeEl = document.getElementById('current-time');
             if (timeEl) {
                 const now = new Date();
-                timeEl.textContent = now.toLocaleDateString('en-US', { 
-                    weekday: 'short', 
-                    month: 'short', 
+                timeEl.textContent = now.toLocaleDateString('en-US', {
+                    weekday: 'short',
+                    month: 'short',
                     day: 'numeric',
-                    hour: '2-digit', 
-                    minute: '2-digit', 
-                    second: '2-digit' 
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
                 });
             }
         }
