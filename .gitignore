@@ -1,0 +1,34 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Composer dependencies
+/vendor/
+
+# Node dependencies and build tooling
+/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime uploads
+/public/uploads/
+
+# Logs and cache
+*.log
+/storage/
+/cache/
+/bootstrap/cache/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Local database dumps/backups
+*.sql.gz
+*.dump
+*.backup

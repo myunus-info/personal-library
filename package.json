@@ -1,0 +1,12 @@
+{
+  "name": "library-management",
+  "version": "1.0.0",
+  "description": "Library management assets compiler using Tailwind CSS v4",
+  "scripts": {
+    "build:css": "npx @tailwindcss/cli -i ./public/css/input.css -o ./public/css/app.css",
+    "watch:css": "npx @tailwindcss/cli -i ./public/css/input.css -o ./public/css/app.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.0.0"
+  }
+}
