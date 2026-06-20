@@ -13,7 +13,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 
-COPY public/css/input.css ./public/css/input.css
+COPY . .
 RUN npm run build:css
 
 

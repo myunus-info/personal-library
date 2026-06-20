@@ -16,7 +16,8 @@ if (file_exists(__DIR__ . '/../.env')) {
 }
 
 // Enable error reporting in development
-if (($_ENV['APP_DEBUG'] ?? 'false') === 'true') {
+$appDebug = $_ENV['APP_DEBUG'] ?? getenv('APP_DEBUG') ?: 'false';
+if ($appDebug === 'true') {
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);

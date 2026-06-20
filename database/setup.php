@@ -11,14 +11,19 @@ if (file_exists(__DIR__ . '/../.env')) {
     $dotenv->load();
 }
 
-$databaseUrl = $_ENV['DATABASE_URL'] ?? '';
-$dbname = $_ENV['DB_DATABASE'] ?? 'library_db';
+$env = static function (string $key, string $default = ''): string {
+    $value = $_ENV[$key] ?? getenv($key);
+    return $value === false || $value === null ? $default : $value;
+};
+
+$databaseUrl = $env('DATABASE_URL');
+$dbname = $env('DB_DATABASE', 'library_db');
 
 if ($databaseUrl === '') {
-    $host = $_ENV['DB_HOST'] ?? '127.0.0.1';
-    $port = $_ENV['DB_PORT'] ?? '5432';
-    $username = $_ENV['DB_USERNAME'] ?? 'postgres';
-    $password = $_ENV['DB_PASSWORD'] ?? '';
+    $host = $env('DB_HOST', '127.0.0.1');
+    $port = $env('DB_PORT', '5432');
+    $username = $env('DB_USERNAME', 'postgres');
+    $password = $env('DB_PASSWORD');
 
     // Local PostgreSQL convenience: create the database if it does not exist.
     try {
@@ -61,8 +66,8 @@ try {
     echo "Schema executed successfully.\n";
 
     // Seed Admin User
-    $adminUser = $_ENV['ADMIN_USERNAME'] ?? 'admin';
-    $adminPassword = $_ENV['ADMIN_PASSWORD'] ?? 'password123';
+    $adminUser = $env('ADMIN_USERNAME', 'admin');
+    $adminPassword = $env('ADMIN_PASSWORD', 'password123');
     
     $stmt = $db->prepare("SELECT COUNT(*) FROM users WHERE username = :username");
     $stmt->execute(['username' => $adminUser]);

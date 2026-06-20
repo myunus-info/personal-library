@@ -27,7 +27,7 @@ class Database {
     }
 
     public static function connectionConfig(?string $databaseUrl = null): array {
-        $databaseUrl = $databaseUrl ?? ($_ENV['DATABASE_URL'] ?? '');
+        $databaseUrl = $databaseUrl ?? self::env('DATABASE_URL', '');
 
         if ($databaseUrl !== '') {
             $parts = parse_url($databaseUrl);
@@ -53,12 +53,12 @@ class Database {
             return [$dsn, $user, $pass];
         }
 
-        $host = $_ENV['DB_HOST'] ?? '127.0.0.1';
-        $port = $_ENV['DB_PORT'] ?? '5432';
-        $db   = $_ENV['DB_DATABASE'] ?? 'library_db';
-        $user = $_ENV['DB_USERNAME'] ?? 'postgres';
-        $pass = $_ENV['DB_PASSWORD'] ?? '';
-        $sslMode = $_ENV['DB_SSLMODE'] ?? '';
+        $host = self::env('DB_HOST', '127.0.0.1');
+        $port = self::env('DB_PORT', '5432');
+        $db   = self::env('DB_DATABASE', 'library_db');
+        $user = self::env('DB_USERNAME', 'postgres');
+        $pass = self::env('DB_PASSWORD', '');
+        $sslMode = self::env('DB_SSLMODE', '');
 
         $dsn = "pgsql:host=$host;port=$port;dbname=$db";
         if ($sslMode !== '') {
@@ -66,5 +66,10 @@ class Database {
         }
 
         return [$dsn, $user, $pass];
+    }
+
+    private static function env(string $key, string $default = ''): string {
+        $value = $_ENV[$key] ?? getenv($key);
+        return $value === false || $value === null ? $default : $value;
     }
 }
